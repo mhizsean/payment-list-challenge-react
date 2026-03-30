@@ -8,6 +8,8 @@ import {
   FilterRow,
   ErrorBox,
   Select,
+  PaginationRow,
+  PaginationButton,
 } from "./components";
 import { I18N } from "../constants/i18n";
 import { useQuery } from "@tanstack/react-query";
@@ -18,8 +20,9 @@ import { formatDate } from "date-fns";
 async function fetchPayments(
   search: string,
   currency: string,
+  page: number,
 ): Promise<PaymentSearchResponse> {
-  const params = new URLSearchParams({ page: "1", pageSize: "5" });
+  const params = new URLSearchParams({ page: String(page), pageSize: "5" });
   if (search) params.set("search", search);
   if (currency) params.set("currency", currency);
   const res = await fetch(`${API_URL}?${params}`);
@@ -31,13 +34,15 @@ export const PaymentsPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState("");
   const [currency, setCurrency] = useState("");
+  const [page, setPage] = useState(1);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["payments", search, currency],
-    queryFn: () => fetchPayments(search, currency),
+    queryKey: ["payments", search, currency, page],
+    queryFn: () => fetchPayments(search, currency, page),
   });
 
   const handleSearch = () => {
+    setPage(1);
     setSearch(inputValue);
   };
 
@@ -45,6 +50,7 @@ export const PaymentsPage = () => {
     setInputValue("");
     setSearch("");
     setCurrency("");
+    setPage(1);
   };
 
   const hasActiveFilters = search || currency;
@@ -99,8 +105,8 @@ export const PaymentsPage = () => {
       )}
 
       {data && (
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-3xl">
+        <div className="overflow-x-auto border border-gray-200 rounded-lg">
+          <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
                 {[
@@ -147,6 +153,25 @@ export const PaymentsPage = () => {
               ))}
             </tbody>
           </table>
+          <PaginationRow>
+            <PaginationButton
+              type="button"
+              disabled={page === 1}
+              onClick={() => setPage((prev) => prev - 1)}
+            >
+              {I18N.PREVIOUS_BUTTON}
+            </PaginationButton>
+            <span>
+              {I18N.PAGE_LABEL} {page}
+            </span>
+            <PaginationButton
+              type="button"
+              disabled={page >= Math.ceil(data.total / data.pageSize)}
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              {I18N.NEXT_BUTTON}
+            </PaginationButton>
+          </PaginationRow>
         </div>
       )}
     </Container>
