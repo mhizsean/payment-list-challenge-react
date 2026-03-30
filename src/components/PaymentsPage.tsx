@@ -1,4 +1,4 @@
-import { Container } from "./components";
+import { Container, StatusBadge } from "./components";
 import { I18N } from "../constants/i18n";
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../constants";
@@ -29,7 +29,7 @@ export const PaymentsPage = () => {
 
       {data && (
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-3xl">
             <thead className="bg-gray-50">
               <tr>
                 {[
@@ -42,14 +42,14 @@ export const PaymentsPage = () => {
                 ].map((header) => (
                   <th
                     key={header}
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-left text-md font-semibold capitalize tracking-wider"
                   >
                     {header}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-100">
+            <tbody className="bg-white divide-gray-100">
               {data.payments.map((payment) => (
                 <tr key={payment.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 text-sm font-mono text-gray-900">
@@ -59,7 +59,7 @@ export const PaymentsPage = () => {
                     {formatDate(payment.date, "dd/MM/yyyy, HH:mm:ss")}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-900">
-                    {(payment.amount, payment.currency)}
+                    {payment.amount.toFixed(2)}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
                     {payment.customerName || I18N.EMPTY_CUSTOMER}
@@ -68,7 +68,9 @@ export const PaymentsPage = () => {
                     {payment.currency || I18N.EMPTY_CURRENCY}
                   </td>
                   <td className="px-6 py-4 text-sm">
-                    <span className="capitalize">{payment.status}</span>
+                    <StatusBadge status={payment.status}>
+                      {payment.status}
+                    </StatusBadge>
                   </td>
                 </tr>
               ))}
