@@ -15,9 +15,13 @@ import { API_URL, CURRENCIES } from "../constants";
 import { PaymentSearchResponse } from "../types/payment";
 import { formatDate } from "date-fns";
 
-async function fetchPayments(search: string): Promise<PaymentSearchResponse> {
+async function fetchPayments(
+  search: string,
+  currency: string,
+): Promise<PaymentSearchResponse> {
   const params = new URLSearchParams({ page: "1", pageSize: "5" });
   if (search) params.set("search", search);
+  if (currency) params.set("currency", currency);
   const res = await fetch(`${API_URL}?${params}`);
   if (!res.ok) throw new Error(String(res.status));
   return res.json();
@@ -30,7 +34,7 @@ export const PaymentsPage = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["payments", search, currency],
-    queryFn: () => fetchPayments(search),
+    queryFn: () => fetchPayments(search, currency),
   });
 
   const handleSearch = () => {
