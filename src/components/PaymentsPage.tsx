@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Container, StatusBadge, SearchInput, SearchButton, ClearButton, FilterRow } from "./components";
+import {
+  Container,
+  StatusBadge,
+  SearchInput,
+  SearchButton,
+  ClearButton,
+  FilterRow,
+  ErrorBox,
+} from "./components";
 import { I18N } from "../constants/i18n";
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../constants";
@@ -18,7 +26,7 @@ export const PaymentsPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState("");
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["payments", search],
     queryFn: () => fetchPayments(search),
   });
@@ -59,6 +67,12 @@ export const PaymentsPage = () => {
       </FilterRow>
 
       {isLoading && <div>Loading...</div>}
+
+      {error && (
+        <ErrorBox>
+          {error.message === "404" ? I18N.PAYMENT_NOT_FOUND : null}
+        </ErrorBox>
+      )}
 
       {data && (
         <div className="overflow-x-auto">
