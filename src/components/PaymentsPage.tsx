@@ -70,7 +70,9 @@ export const PaymentsPage = () => {
 
       {error && (
         <ErrorBox>
-          {error.message === "404" ? I18N.PAYMENT_NOT_FOUND : null}
+          {error.message === "404"
+            ? I18N.PAYMENT_NOT_FOUND
+            : I18N.INTERNAL_SERVER_ERROR}
         </ErrorBox>
       )}
 
