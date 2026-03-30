@@ -48,7 +48,7 @@ export const PaymentsPage = () => {
         </h2>
       </div>
 
-      <FilterRow className="px-6 pt-4">
+      <FilterRow>
         <SearchInput
           type="text"
           placeholder={I18N.SEARCH_PLACEHOLDER}
