@@ -7,10 +7,11 @@ import {
   ClearButton,
   FilterRow,
   ErrorBox,
+  Select,
 } from "./components";
 import { I18N } from "../constants/i18n";
 import { useQuery } from "@tanstack/react-query";
-import { API_URL } from "../constants";
+import { API_URL, CURRENCIES } from "../constants";
 import { PaymentSearchResponse } from "../types/payment";
 import { formatDate } from "date-fns";
 
@@ -25,9 +26,10 @@ async function fetchPayments(search: string): Promise<PaymentSearchResponse> {
 export const PaymentsPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [search, setSearch] = useState("");
+  const [currency, setCurrency] = useState("");
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["payments", search],
+    queryKey: ["payments", search, currency],
     queryFn: () => fetchPayments(search),
   });
 
@@ -38,11 +40,14 @@ export const PaymentsPage = () => {
   const handleClear = () => {
     setInputValue("");
     setSearch("");
+    setCurrency("");
   };
+
+  const hasActiveFilters = search || currency;
 
   return (
     <Container>
-      <div className="px-6 py-4 border-b border-gray-200">
+      <div className=" py-4">
         <h2 className="text-xl font-semibold text-gray-800">
           {I18N.PAGE_TITLE}
         </h2>
@@ -56,10 +61,23 @@ export const PaymentsPage = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
+        <Select
+          aria-label={I18N.CURRENCY_FILTER_LABEL}
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}
+        >
+          <option value="">{I18N.CURRENCIES_OPTION}</option>
+          {CURRENCIES.map((currency) => (
+            <option key={currency} value={currency}>
+              {currency}
+            </option>
+          ))}
+        </Select>
         <SearchButton type="button" onClick={handleSearch}>
           {I18N.SEARCH_BUTTON}
         </SearchButton>
-        {search && (
+
+        {hasActiveFilters && (
           <ClearButton type="button" onClick={handleClear}>
             {I18N.CLEAR_FILTERS}
           </ClearButton>
