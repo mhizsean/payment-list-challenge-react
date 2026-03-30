@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="11" failures="1" errors="0" time="1.027729958">
+    <testsuite name="src/App.test.tsx" timestamp="2026-03-30T17:08:35.979Z" hostname="Esthers-MacBook-Pro.local" tests="11" failures="1" errors="0" skipped="10" time="1.027729958">
+        <testcase classname="src/App.test.tsx" name="App - Step 1: Basic Payment List &gt; should fetch and display payments in a table with page=1 and pageSize=5" time="1.025387625">
+            <failure message="Unable to find role=&quot;table&quot;
+
+Ignored nodes: comments, script, style
+[36m&lt;body&gt;[39m
+  [36m&lt;div&gt;[39m
+    [36m&lt;div[39m
+      [33mclass[39m=[32m&quot;min-h-screen bg-gray-50&quot;[39m
+    [36m&gt;[39m
+      [36m&lt;header[39m
+        [33mclass[39m=[32m&quot;bg-white shadow-sm&quot;[39m
+      [36m&gt;[39m
+        [36m&lt;div[39m
+          [33mclass[39m=[32m&quot;max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;h1[39m
+            [33mclass[39m=[32m&quot;text-3xl font-bold text-gray-900&quot;[39m
+          [36m&gt;[39m
+            [0mCheckout.com[0m
+          [36m&lt;/h1&gt;[39m
+        [36m&lt;/div&gt;[39m
+      [36m&lt;/header&gt;[39m
+      [36m&lt;main[39m
+        [33mclass[39m=[32m&quot;max-w-7xl mx-auto py-6 sm:px-6 lg:px-8&quot;[39m
+      [36m&gt;[39m
+        [36m&lt;div[39m
+          [33mclass[39m=[32m&quot;sc-bRKDuR jKQypZ&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;div[39m
+            [33mclass[39m=[32m&quot;px-6 py-4 border-b border-gray-200&quot;[39m
+          [36m&gt;[39m
+            [36m&lt;h2[39m
+              [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-800&quot;[39m
+            [36m&gt;[39m
+              [0mAll payments[0m
+            [36m&lt;/h2&gt;[39m
+          [36m&lt;/div&gt;[39m
+        [36m&lt;/div&gt;[39m
+      [36m&lt;/main&gt;[39m
+    [36m&lt;/div&gt;[39m
+  [36m&lt;/div&gt;[39m
+[36m&lt;/body&gt;[39m
+
+Ignored nodes: comments, script, style
+[36m&lt;html&gt;[39m
+  [36m&lt;head /&gt;[39m
+  [36m&lt;body&gt;[39m
+    [36m&lt;div&gt;[39m
+      [36m&lt;div[39m
+        [33mclass[39m=[32m&quot;min-h-screen bg-gray-50&quot;[39m
+      [36m&gt;[39m
+        [36m&lt;header[39m
+          [33mclass[39m=[32m&quot;bg-white shadow-sm&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;div[39m
+            [33mclass[39m=[32m&quot;max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8&quot;[39m
+          [36m&gt;[39m
+            [36m&lt;h1[39m
+              [33mclass[39m=[32m&quot;text-3xl font-bold text-gray-900&quot;[39m
+            [36m&gt;[39m
+              [0mCheckout.com[0m
+            [36m&lt;/h1&gt;[39m
+          [36m&lt;/div&gt;[39m
+        [36m&lt;/header&gt;[39m
+        [36m&lt;main[39m
+          [33mclass[39m=[32m&quot;max-w-7xl mx-auto py-6 sm:px-6 lg:px-8&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;div[39m
+            [33mclass[39m=[32m&quot;sc-bRKDuR jKQypZ&quot;[39m
+          [36m&gt;[39m
+            [36m&lt;div[39m
+              [33mclass[39m=[32m&quot;px-6 py-4 border-b border-gray-200&quot;[39m
+            [36m&gt;[39m
+              [36m&lt;h2[39m
+                [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-800&quot;[39m
+              [36m&gt;[39m
+                [0mAll payments[0m
+              [36m&lt;/h2&gt;[39m
+            [36m&lt;/div&gt;[39m
+          [36m&lt;/div&gt;[39m
+        [36m&lt;/main&gt;[39m
+      [36m&lt;/div&gt;[39m
+    [36m&lt;/div&gt;[39m
+  [36m&lt;/body&gt;[39m
+[36m&lt;/html&gt;[39m" type="TestingLibraryElementError">
+TestingLibraryElementError: Unable to find role=&quot;table&quot;
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;min-h-screen bg-gray-50&quot;
+    &gt;
+      &lt;header
+        class=&quot;bg-white shadow-sm&quot;
+      &gt;
+        &lt;div
+          class=&quot;max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8&quot;
+        &gt;
+          &lt;h1
+            class=&quot;text-3xl font-bold text-gray-900&quot;
+          &gt;
+            Checkout.com
+          &lt;/h1&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+      &lt;main
+        class=&quot;max-w-7xl mx-auto py-6 sm:px-6 lg:px-8&quot;
+      &gt;
+        &lt;div
+          class=&quot;sc-bRKDuR jKQypZ&quot;
+        &gt;
+          &lt;div
+            class=&quot;px-6 py-4 border-b border-gray-200&quot;
+          &gt;
+            &lt;h2
+              class=&quot;text-xl font-semibold text-gray-800&quot;
+            &gt;
+              All payments
+            &lt;/h2&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/main&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+
+Ignored nodes: comments, script, style
+&lt;html&gt;
+  &lt;head /&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;div
+        class=&quot;min-h-screen bg-gray-50&quot;
+      &gt;
+        &lt;header
+          class=&quot;bg-white shadow-sm&quot;
+        &gt;
+          &lt;div
+            class=&quot;max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8&quot;
+          &gt;
+            &lt;h1
+              class=&quot;text-3xl font-bold text-gray-900&quot;
+            &gt;
+              Checkout.com
+            &lt;/h1&gt;
+          &lt;/div&gt;
+        &lt;/header&gt;
+        &lt;main
+          class=&quot;max-w-7xl mx-auto py-6 sm:px-6 lg:px-8&quot;
+        &gt;
+          &lt;div
+            class=&quot;sc-bRKDuR jKQypZ&quot;
+          &gt;
+            &lt;div
+              class=&quot;px-6 py-4 border-b border-gray-200&quot;
+            &gt;
+              &lt;h2
+                class=&quot;text-xl font-semibold text-gray-800&quot;
+              &gt;
+                All payments
+              &lt;/h2&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/main&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ src/App.test.tsx:78:11
+
+            </failure>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 2: Search by Payment ID &gt; should have a search input for payment ID" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 2: Search by Payment ID &gt; should search for payments by payment ID" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 3: Clear Filters &gt; should clear all filters when clear button is clicked" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 4: Handle Payment Not Found &gt; should display error message when payment ID is not found" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 5: Handle Server Error &gt; should display error message when API returns 500" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 6: Currency Filter &gt; should have a currency filter dropdown" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 6: Currency Filter &gt; should filter payments by currency when selected" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 7: Combined Currency and Payment ID Filter &gt; should filter by both currency and payment ID" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 8: Pagination &gt; should display pagination controls" time="0">
+            <skipped/>
+        </testcase>
+        <testcase classname="src/App.test.tsx" name="App - Step 8: Pagination &gt; should disable previous button on first page" time="0">
+            <skipped/>
+        </testcase>
+    </testsuite>
+</testsuites>
