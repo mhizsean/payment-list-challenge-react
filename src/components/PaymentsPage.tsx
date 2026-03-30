@@ -1,21 +1,31 @@
-import { Container, StatusBadge } from "./components";
+import { useState } from "react";
+import { Container, StatusBadge, SearchInput, SearchButton, FilterRow } from "./components";
 import { I18N } from "../constants/i18n";
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../constants";
 import { PaymentSearchResponse } from "../types/payment";
 import { formatDate } from "date-fns";
 
-async function fetchPayments(): Promise<PaymentSearchResponse> {
-  const res = await fetch(`${API_URL}?page=1&pageSize=5`);
+async function fetchPayments(search: string): Promise<PaymentSearchResponse> {
+  const params = new URLSearchParams({ page: "1", pageSize: "5" });
+  if (search) params.set("search", search);
+  const res = await fetch(`${API_URL}?${params}`);
   if (!res.ok) throw new Error(String(res.status));
   return res.json();
 }
 
 export const PaymentsPage = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [search, setSearch] = useState("");
+
   const { data, isLoading } = useQuery({
-    queryKey: ["payments"],
-    queryFn: fetchPayments,
+    queryKey: ["payments", search],
+    queryFn: () => fetchPayments(search),
   });
+
+  const handleSearch = () => {
+    setSearch(inputValue);
+  };
 
   return (
     <Container>
@@ -24,6 +34,19 @@ export const PaymentsPage = () => {
           {I18N.PAGE_TITLE}
         </h2>
       </div>
+
+      <FilterRow className="px-6 pt-4">
+        <SearchInput
+          type="text"
+          placeholder={I18N.SEARCH_PLACEHOLDER}
+          aria-label={I18N.SEARCH_LABEL}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <SearchButton type="button" onClick={handleSearch}>
+          {I18N.SEARCH_BUTTON}
+        </SearchButton>
+      </FilterRow>
 
       {isLoading && <div>Loading...</div>}
 
