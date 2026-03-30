@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, StatusBadge, SearchInput, SearchButton, FilterRow } from "./components";
+import { Container, StatusBadge, SearchInput, SearchButton, ClearButton, FilterRow } from "./components";
 import { I18N } from "../constants/i18n";
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../constants";
@@ -27,6 +27,11 @@ export const PaymentsPage = () => {
     setSearch(inputValue);
   };
 
+  const handleClear = () => {
+    setInputValue("");
+    setSearch("");
+  };
+
   return (
     <Container>
       <div className="px-6 py-4 border-b border-gray-200">
@@ -46,6 +51,11 @@ export const PaymentsPage = () => {
         <SearchButton type="button" onClick={handleSearch}>
           {I18N.SEARCH_BUTTON}
         </SearchButton>
+        {search && (
+          <ClearButton type="button" onClick={handleClear}>
+            {I18N.CLEAR_FILTERS}
+          </ClearButton>
+        )}
       </FilterRow>
 
       {isLoading && <div>Loading...</div>}
